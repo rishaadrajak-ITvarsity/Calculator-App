@@ -1,0 +1,67 @@
+
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+table{
+    color: #fff;
+    text-align: center;
+    border-collapse: collapse;
+    font: normal 3em Arial, Helvetica, sans-serif;
+
+}
+
+tr{
+    height: 16.46vh;
+    background-color: #4e494d;
+}
+
+td{
+    width: 25vw;
+    border: 1px solid #4e494d;
+}
+
+#inputBox{
+    background-color: #4e494d;
+    text-align: right;
+    width: 100%;
+    font-size: 2em;
+    color: #fff;
+    border: 0px;
+}
+
+tr #inputBox{
+    margin-left: -100px;
+}
+
+.digitButton, .operatorButton, .ACButton {
+    transition-duration: 500ms;
+}
+
+.digitButton{
+    background-color: #807e80;
+}
+
+.digitButton:hover{
+    background-color: #cfcccf;
+}
+
+.operatorButton{
+    background-color: #ff9e06;
+}
+
+.operatorButton:hover{
+    background-color: #b97404;
+}
+
+.ACButton{
+    background-color: #656165;
+}
+
+.ACButton:hover{
+    background-color: #242224;
+}

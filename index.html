@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>Calculator App</title>
+    </head>
+
+    <body>
+        <table>
+
+            <tr>
+                <td colspan="4">
+                    <input type="text" id="inputBox" value="0">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="digitButton" onclick="digitBtnPressed(7)">7</td>
+                <td class="digitButton" onclick="digitBtnPressed(8)">8</td>
+                <td class="digitButton" onclick="digitBtnPressed(9)">9</td>
+                <td class="operatorButton" onclick="operatorBtnPressed('*')">x</td>
+            </tr>
+
+            <tr>
+                <td class="digitButton" onclick="digitBtnPressed(4)">4</td>
+                <td class="digitButton" onclick="digitBtnPressed(5)">5</td>
+                <td class="digitButton" onclick="digitBtnPressed(6)">6</td>
+                <td class="operatorButton" onclick="operatorBtnPressed('-')">-</td>
+            </tr>
+
+            <tr>
+                <td class="digitButton" onclick="digitBtnPressed(1)">1</td>
+                <td class="digitButton" onclick="digitBtnPressed(2)">2</td>
+                <td class="digitButton" onclick="digitBtnPressed(3)">3</td>
+                <td class="operatorButton" onclick="operatorBtnPressed('+')">+</td>
+            </tr>
+
+            <tr>
+                <td colspan="2" class="digitButton" onclick="digitBtnPressed(0)">0</td>
+                <td class="ACButton" onclick="btnACPressed()">AC</td>
+                <td class="operatorButton" onclick="operatorBtnPressed('/')">/</td>
+            </tr>
+
+            <tr>
+                <td colspan="4" class="operatorButton" onclick="equalBtnPressed()">=</td>
+            </tr>
+            
+        </table>
+
+        <script>
+            var newLine = true;
+            var total = 0
+            var arrNum = []
+            var arrOps = []
+
+            // Event handler for when any digit btn pressed
+            function digitBtnPressed(btn){ 
+                if(newLine){
+                    document.getElementById("inputBox").value = btn
+                    newLine = false
+                }else{
+                    var currentValue = document.getElementById("inputBox").value
+                    document.getElementById("inputBox").value = currentValue + btn
+                }
+            }
+
+            // Event handler for when 'all clear' btn pressed
+            function btnACPressed(){
+                document.getElementById("inputBox").value = 0
+                newLine = true;
+                total = 0
+                arrNum = []
+                arrOps = []
+            } 
+
+            // Event handler to record operator pressed
+            function operatorBtnPressed(op){
+                newLine = true
+                arrNum.push(parseInt(document.getElementById("inputBox").value))
+                arrOps.push(op)
+            }
+
+            // Event handler for equals to btn
+            function equalBtnPressed(){
+                newLine = true
+                total = arrNum[0]
+
+                arrNum.push(parseInt(document.getElementById("inputBox").value))
+                for(i=0;i<arrOps.length;i++){
+                    switch(arrOps[i]){
+                        case '+': total += arrNum[i+1];break
+                        case '-': total -= arrNum[i+1];break
+                        case '/': total /= arrNum[i+1];break
+                        case '*': total *= arrNum[i+1];break
+                    }
+                }
+
+                document.getElementById('inputBox').value = total
+                console.log("Numbers:  "+ arrNum+"\nOperators: "+arrOps)
+                // Reset variables after answer
+                total = 0
+                arrNum = []
+                arrOps = []
+                
+            }
+
+        </script>
+
+    </body>
+</html>
